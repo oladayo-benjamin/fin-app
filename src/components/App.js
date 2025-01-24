@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import PriceDisplay from "./PriceDisplay";
 import PriceChart from "./PriceChart";
 import DarkModeToggle from "./DarkModeToggle";
-import { useEffect } from 'react';
+import Footer from "./Footer";
 import "./App.css";
 
 function App() {
@@ -15,14 +15,14 @@ function App() {
   };
 
   useEffect(() => {
-    const savedMode = localStorage.getItem('darkMode');
+    const savedMode = localStorage.getItem("darkMode");
     if (savedMode) {
       setDarkMode(JSON.parse(savedMode));
     }
   }, []);
-  
+
   useEffect(() => {
-    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
 
   return (
@@ -36,6 +36,7 @@ function App() {
         {selectedItem && <PriceDisplay item={selectedItem} />}
         {selectedItem && <PriceChart item={selectedItem} />}
       </main>
+      <Footer />
     </div>
   );
 }
